@@ -1,0 +1,126 @@
+#####################################
+# UNITY GENERATED FOLDERS
+#####################################
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+ExportedObj/
+
+#####################################
+# UNITY META FILES (CRÍTICO)
+#####################################
+# Los .meta contienen GUIDs — NUNCA ignorarlos
+!*.meta
+
+#####################################
+# UNITY AUTO-GENERATED FILES
+#####################################
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+sysinfo.txt
+
+#####################################
+# IDEs / EDITORS
+#####################################
+.vs/
+.vscode/
+.idea/
+.consulo/
+.gradle/
+
+#####################################
+# BUILD ARTIFACTS
+#####################################
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.exe
+*.ipa
+
+#####################################
+# ADDRESSABLES
+# Descomenta si se generan localmente y no deben versionarse
+#####################################
+# /Assets/AddressableAssetsData/*
+# /Assets/StreamingAssets/aa/*
+
+#####################################
+# MOBILE / CI
+#####################################
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+#####################################
+# CONTROL DE VERSIONES ALTERNATIVOS
+#####################################
+.plastic/
+.plasticignore
+
+#####################################
+# SECRETOS Y CONFIGURACIÓN LOCAL
+#####################################
+.env
+.env.*
+*.secrets
+**/ApiKeys.asset
+**/Secrets.asset
+google-services.json
+GoogleService-Info.plist
+
+#####################################
+# LOGS & CRASH FILES
+#####################################
+crashlytics-build.properties
+
+#####################################
+# OS GENERATED FILES
+#####################################
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+#####################################
+# TEMP / BACKUP FILES
+#####################################
+*.bak
+*.swp
+*.orig
+*.rej
