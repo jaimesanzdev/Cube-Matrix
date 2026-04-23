@@ -15,7 +15,13 @@ public class CubeRollMovement : MonoBehaviour
     [SerializeField] private float raycastDistance = 5f;
 
     private bool isMoving = false;
+    private CubeOrientation orientation;
 
+    void Start()
+    {
+        orientation = GetComponent<CubeOrientation>();
+    }
+    
     void Update()
     {
         if (isMoving) return;
@@ -84,6 +90,8 @@ public class CubeRollMovement : MonoBehaviour
         SnapRotation();
 
         isMoving = false;
+        
+        orientation.UpdateOrientation(rotationAxis, 90f);
     }
 
     private void SnapToGrid()
