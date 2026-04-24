@@ -33,6 +33,12 @@ public class CubeOrientation : MonoBehaviour
             wasHollowDown = isHollowDown;
         }
     }
+
+   //need it when detecting a win in the win block 
+    public bool IsHollowFaceOnBottom()
+    {
+    return Vector3.Dot(hollowFaceDirection, Vector3.down) > 0.99f;
+    }
     
     // Call this from CubeRollMovement after every roll, passing the same rotationAxis and 90f
     public void UpdateOrientation(Vector3 rotationAxis, float angle)
