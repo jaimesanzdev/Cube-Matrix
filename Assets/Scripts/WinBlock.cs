@@ -1,28 +1,30 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinBlock : MonoBehaviour
 {
-    public CubeState.FaceType requiredFace;
-
     private void OnTriggerEnter(Collider other)
     {
-        CubeState cube = other.GetComponent<CubeState>();
+        CubeState state = other.GetComponent<CubeState>();
+        CubeOrientation orientation = other.GetComponent<CubeOrientation>();
 
-        if (cube != null)
+        if (state == null || orientation == null) return;
+
+        if (!state.isSnapped)
         {
-            if (!cube.isSnapped) return;
+            Debug.Log("Cube not snapped yet");
+            return;
+        }
 
-            if (cube.currentBottomFace == requiredFace)
-            {
-                Debug.Log("win!");
-                //go to next level: SceneManager.LoadScene(...);
-            }
-            else
-            {
-                Debug.Log("does not match to win");
-
-                //give player feedback that the move is wrong 
-            }
+        if (orientation.IsHollowFaceOnBottom())
+        {
+            Debug.Log("win!");
+            //go to next level: SceneManager.LoadScene(...);
+        }
+        else
+        {
+            Debug.Log("does not match to win");
+            //give player feedback that the move is wrong 
         }
     }
 }
