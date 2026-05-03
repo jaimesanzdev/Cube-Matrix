@@ -17,7 +17,18 @@ public class CubeMenuController : MonoBehaviour
     [SerializeField] private Transform playFaceMarker;
     [SerializeField] private float playFaceDotThreshold = 0.85f;
 
+    [Header("Transitions")]
+    [SerializeField] private LevelMenuTransition levelMenuTransition;
+    [SerializeField] private LevelSelectTransition levelSelectTransition;
+
+    [Header("Word System")]
+    [SerializeField] private CubeFaceWordManager cubeFaceWordManager;
+    [SerializeField] private VoxelWordDisplay playWordDisplay;
+
     private bool isRotating = false;
+    private bool isInLevelSelect = false;
+    private bool isStartingPlay = false;
+
     private Quaternion targetRotation;
 
     private bool pointerPressed = false;
@@ -38,33 +49,38 @@ public class CubeMenuController : MonoBehaviour
         HandlePointerInput();
     }
 
+    public void SetLevelSelectMode(bool value)
+    {
+        isInLevelSelect = value;
+    }
+
     private void HandleKeyboardInput()
     {
-        if (isRotating || Keyboard.current == null)
+        if (isRotating || isInLevelSelect || isStartingPlay || Keyboard.current == null)
             return;
 
-        // OJO: arriba/abajo están invertidos por tu preferencia personal
+        // Arriba/abajo invertidos por tu preferencia
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        {
-            RotateCube(Vector3.right, 90f);
-        }
-        else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
             RotateCube(Vector3.right, -90f);
         }
+        else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        {
+            RotateCube(Vector3.right, 90f);
+        }
         else if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
-            RotateCube(Vector3.up, 90f);
+            RotateCube(Vector3.up, -90f);
         }
         else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
-            RotateCube(Vector3.up, -90f);
+            RotateCube(Vector3.up, 90f);
         }
     }
 
     private void HandlePointerInput()
     {
-        if (isRotating)
+        if (isRotating || isStartingPlay)
             return;
 
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
@@ -118,13 +134,24 @@ public class CubeMenuController : MonoBehaviour
 
         if (delta.magnitude >= minSwipeDistance)
         {
-            ProcessSwipe(delta);
+            if (!isInLevelSelect)
+            {
+                ProcessSwipe(delta);
+            }
+
             return;
         }
 
         if (delta.magnitude <= maxTapDistance)
         {
-            TryPressPlay(end);
+            if (isInLevelSelect)
+            {
+                TryPressLevelCube(end);
+            }
+            else
+            {
+                TryPressPlay(end);
+            }
         }
     }
 
@@ -134,30 +161,29 @@ public class CubeMenuController : MonoBehaviour
         {
             if (delta.x > 0f)
             {
-                RotateCube(Vector3.up, -90f); // swipe derecha
+                RotateCube(Vector3.up, 90f); // derecha
             }
             else
             {
-                RotateCube(Vector3.up, 90f); // swipe izquierda
+                RotateCube(Vector3.up, -90f); // izquierda
             }
         }
         else
         {
-            // OJO: arriba/abajo invertidos por tu preferencia
             if (delta.y > 0f)
             {
-                RotateCube(Vector3.right, 90f); // swipe arriba
+                RotateCube(Vector3.right, -90f); // arriba
             }
             else
             {
-                RotateCube(Vector3.right, -90f); // swipe abajo
+                RotateCube(Vector3.right, 90f); // abajo
             }
         }
     }
 
     private void TryPressPlay(Vector2 screenPosition)
     {
-        if (targetCamera == null || playFaceMarker == null)
+        if (targetCamera == null || playFaceMarker == null || isStartingPlay)
             return;
 
         Ray ray = targetCamera.ScreenPointToRay(screenPosition);
@@ -170,12 +196,45 @@ public class CubeMenuController : MonoBehaviour
 
         if (IsPlayFaceActive())
         {
-            Debug.Log("Play");
+            StartCoroutine(StartPlaySequence());
+        }
+    }
+
+    private IEnumerator StartPlaySequence()
+    {
+        isStartingPlay = true;
+
+        if (playWordDisplay != null)
+            yield return playWordDisplay.DisintegrateRoutine();
+
+        if (levelMenuTransition != null && !levelMenuTransition.IsTransitionRunning)
+            levelMenuTransition.StartPlayTransition();
+
+        isStartingPlay = false;
+    }
+
+    private void TryPressLevelCube(Vector2 screenPosition)
+    {
+        if (targetCamera == null)
+            return;
+
+        Ray ray = targetCamera.ScreenPointToRay(screenPosition);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit))
+            return;
+
+        LevelCubeButton button = hit.transform.GetComponentInParent<LevelCubeButton>();
+        if (button != null)
+        {
+            button.OnPressed();
         }
     }
 
     private bool IsPlayFaceActive()
     {
+        if (targetCamera == null || playFaceMarker == null)
+            return false;
+
         Vector3 toCamera = (targetCamera.transform.position - playFaceMarker.position).normalized;
         float dot = Vector3.Dot(playFaceMarker.forward, toCamera);
 
@@ -186,6 +245,9 @@ public class CubeMenuController : MonoBehaviour
     {
         if (isRotating)
             return;
+
+        if (cubeFaceWordManager != null)
+            cubeFaceWordManager.PreviewFaceAfterRotationStep(axis, angle);
 
         Quaternion rotationStep = Quaternion.AngleAxis(angle, axis);
         targetRotation = rotationStep * targetRotation;
@@ -211,6 +273,10 @@ public class CubeMenuController : MonoBehaviour
         }
 
         transform.rotation = newTargetRotation;
+
+        if (cubeFaceWordManager != null)
+            cubeFaceWordManager.RefreshCurrentFaceAfterRotation();
+
         isRotating = false;
     }
 }
