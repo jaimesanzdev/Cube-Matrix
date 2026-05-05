@@ -14,19 +14,12 @@ public class CubeRollMovement : MonoBehaviour
     [SerializeField] private float raycastHeight = 2f;
     [SerializeField] private float raycastDistance = 5f;
 
-    [Header("Portal")]
-    [SerializeField] private float portalSinkSpeed = 3f;
-    
-    public bool isMoving = false;
+    private bool isMoving = false;
     private CubeOrientation orientation;
 
     void Start()
     {
         orientation = GetComponent<CubeOrientation>();
-    
-        // snap to grid on start so all rolls begin from a clean position
-        SnapToGrid();
-        SnapRotation();
     }
     
     void Update()
@@ -99,18 +92,6 @@ public class CubeRollMovement : MonoBehaviour
         isMoving = false;
         
         orientation.UpdateOrientation(rotationAxis, 90f);
-        
-        Vector3 checkPos = transform.position + Vector3.down * (cellSize / 2f);
-        Collider[] hits = Physics.OverlapSphere(checkPos, 0.4f, tileLayer);
-        foreach (Collider hit in hits)
-        {
-            PortalTile portal = hit.GetComponent<PortalTile>();
-            if (portal != null)
-            {
-                StartCoroutine(PortalTransition(portal));
-                break;
-            }
-        }
     }
 
     private void SnapToGrid()
@@ -153,48 +134,5 @@ public class CubeRollMovement : MonoBehaviour
 
             Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * raycastDistance);
         }
-    }
-    private IEnumerator PortalTransition(PortalTile portal)
-    {
-        isMoving = true;
-
-        Material mat = GetComponentInChildren<MeshRenderer>().material;
-        float tileY = transform.position.y - cellSize / 2f; // tile surface Y
-
-        // start clipping below tile surface
-        mat.SetFloat("_ClipY", tileY);
-        mat.SetFloat("_Clipping", 1.0f);
-
-        // sink below
-        Vector3 startPos = transform.position;
-        Vector3 sinkTarget = startPos + Vector3.down * cellSize;
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * portalSinkSpeed;
-            transform.position = Vector3.Lerp(startPos, sinkTarget, t);
-            yield return null;
-        }
-
-        // teleport to exit
-        Vector3 exitPos = portal.GetExitPosition(transform.position.y);
-        transform.position = exitPos;
-        portal.SetCooldown();
-
-        // pop up at exit
-        Vector3 popTarget = exitPos + Vector3.up * cellSize;
-        t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * portalSinkSpeed;
-            transform.position = Vector3.Lerp(exitPos, popTarget, t);
-            yield return null;
-        }
-
-        // stop clipping
-        mat.SetFloat("_Clipping", 0.0f);
-
-        SnapToGrid();
-        isMoving = false;
     }
 }

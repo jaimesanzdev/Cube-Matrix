@@ -833,7 +833,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovingPlatform
   moveOffset: {x: 4.5, y: 0, z: 0}
   speed: 2
-  delay: 10
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
