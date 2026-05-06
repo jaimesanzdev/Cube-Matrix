@@ -47,6 +47,17 @@ public class CubeRollMovement : MonoBehaviour
 
         if (direction != Vector3.zero && CanMove(direction))
         {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, cellSize))
+            {
+                Debug.Log("raycast hit: " + hit.collider.name);
+                PushableBlock cube = hit.collider.GetComponent<PushableBlock>();
+                if (cube != null)
+                {
+                    if (cube.IsMoving || !cube.CanMove(direction)) return;
+                    cube.Push(direction);
+                }
+            }
             StartCoroutine(Roll(direction));
         }
     }
