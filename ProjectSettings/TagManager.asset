@@ -5,18 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - PushableBlock
+  - HollowFace
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HollowFace
   - Water
   - UI
   - Tile
-  - 
-  - 
-  - 
-  - 
+  - 3DUI
+  - PushableBlock
+  - Button
+  - Player
   - 
   - 
   - 

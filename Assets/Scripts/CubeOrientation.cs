@@ -58,7 +58,7 @@ public class CubeOrientation : MonoBehaviour
     // Returns true if the hollow face is currently facing down (touching the ground)
     public bool IsHollowFaceDown()
     {
-        return Vector3.Dot(hollowFaceDirection, Vector3.down) > 0.99f;
+        return Vector3.Dot(hollowFaceDirection, Vector3.down) > 0.9f;
         
     }
 
