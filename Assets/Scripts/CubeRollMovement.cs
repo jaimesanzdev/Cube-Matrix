@@ -36,10 +36,11 @@ public class CubeRollMovement : MonoBehaviour
     
     void Update()
     {
-        if (isMoving) return;
         if (Keyboard.current == null) return;
-        if (rollFeedback != null && rollFeedback.IsPlayingBump) return;
 
+        // Read keyboard input and delegate to TryRoll. The gate checks
+        // (isMoving, IsPlayingBump) live inside TryRoll so external input
+        // sources (swipe, gamepad, etc.) go through the same gates.
         Vector3 direction = Vector3.zero;
 
         if (Keyboard.current.upArrowKey.isPressed)
@@ -51,7 +52,36 @@ public class CubeRollMovement : MonoBehaviour
         else if (Keyboard.current.rightArrowKey.isPressed)
             direction = Vector3.right;
 
-        if (direction != Vector3.zero && CanMove(direction))
+        if (direction != Vector3.zero) TryRoll(direction);
+
+    }
+
+
+    /// <summary>
+    /// Public entry point for triggering a roll attempt from any input source
+    /// (keyboard reader in Update, SwipeInputProvider, future gamepad reader,
+    /// custom puzzle scripts, etc.). All gate checks and rejection feedback
+    /// flow through here, so every input path produces consistent behavior.
+    ///
+    /// Behavior:
+    ///   - If the cube is already moving (rolling, portaling, or playing a
+    ///     bump animation), the call is silently ignored.
+    ///   - If a tile exists in the target direction, kicks off a roll
+    ///     (handling pushable blocks along the way).
+    ///   - If no tile exists, fires RollFeedback.OnInvalidRollAttempted so
+    ///     the player gets visual/audio/haptic feedback.
+    ///
+    /// Direction must be one of Vector3.forward/back/left/right. Other
+    /// values produce undefined rolling behavior because the grid math
+    /// expects axis-aligned cardinal directions.
+    /// </summary>
+    public void TryRoll(Vector3 direction)
+    {
+        if (isMoving) return;
+        if (rollFeedback != null && rollFeedback.IsPlayingBump) return;
+        if (direction == Vector3.zero) return;
+
+        if (CanMove(direction))
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction, out hit, cellSize))
@@ -73,15 +103,14 @@ public class CubeRollMovement : MonoBehaviour
             }
             StartCoroutine(Roll(direction));
         }
-        else if (direction != Vector3.zero && rollFeedback != null)
+        else if (rollFeedback != null)
         {
             rollFeedback.OnInvalidRollAttempted(direction);
         }
-
-
-
-
     }
+
+
+
 
     private bool CanMove(Vector3 direction)
     {
