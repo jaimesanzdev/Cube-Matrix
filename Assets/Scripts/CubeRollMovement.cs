@@ -20,10 +20,15 @@ public class CubeRollMovement : MonoBehaviour
     public bool isMoving = false;
     private CubeOrientation orientation;
 
+    private RollFeedback rollFeedback;
+
     void Start()
     {
         orientation = GetComponent<CubeOrientation>();
-    
+        rollFeedback = GetComponent<RollFeedback>();
+
+
+
         // snap to grid on start so all rolls begin from a clean position
         SnapToGrid();
         SnapRotation();
@@ -33,6 +38,7 @@ public class CubeRollMovement : MonoBehaviour
     {
         if (isMoving) return;
         if (Keyboard.current == null) return;
+        if (rollFeedback != null && rollFeedback.IsPlayingBump) return;
 
         Vector3 direction = Vector3.zero;
 
@@ -54,12 +60,27 @@ public class CubeRollMovement : MonoBehaviour
                 PushableBlock cube = hit.collider.GetComponent<PushableBlock>();
                 if (cube != null)
                 {
-                    if (cube.IsMoving || !cube.CanMove(direction)) return;
+                    if (cube.IsMoving || !cube.CanMove(direction))
+                    {
+                        if (rollFeedback != null)
+                        {
+                            rollFeedback.OnInvalidRollAttempted(direction);
+                        }
+                        return;
+                    }
                     cube.Push(direction);
                 }
             }
             StartCoroutine(Roll(direction));
         }
+        else if (direction != Vector3.zero && rollFeedback != null)
+        {
+            rollFeedback.OnInvalidRollAttempted(direction);
+        }
+
+
+
+
     }
 
     private bool CanMove(Vector3 direction)
