@@ -126,4 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Button
   platform: {fileID: 0}
+  orientation: {fileID: 0}
   pressurePlate: 1
