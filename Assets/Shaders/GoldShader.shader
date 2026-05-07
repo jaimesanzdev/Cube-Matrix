@@ -4,6 +4,8 @@ Shader "Custom/GoldShader"
     {
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
+        _GlowStrength ("Glow Strength", Float) = 2.5
+        _PulseSpeed ("Pulse Speed", Float) = 2.0
     }
 
     SubShader

@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8beb22a39c5f7465cbbc9a5e92fd59b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,10 +155,15 @@ MonoBehaviour:
   controlPoint: {x: 0, y: 1.4, z: 0}
   travelTime: 1.5
   mode: 0
+  carryRider: 1
   autoTriggerDelay: 0.3
+  postArrivalCooldown: 1.5
+  lingerTime: 2
+  autoReturnDelay: 1.5
   pulseRenderer: {fileID: 0}
   travelEmissionColor: {r: 0.2, g: 0.8, b: 1, a: 1}
   travelEmissionIntensity: 2
+  verboseLogging: 0
 --- !u!54 &8482726793909996217
 Rigidbody:
   m_ObjectHideFlags: 0
