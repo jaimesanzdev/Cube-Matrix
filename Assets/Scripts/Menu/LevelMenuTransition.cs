@@ -7,7 +7,7 @@ public class LevelMenuTransition : MonoBehaviour
     [Header("Main Cube")]
     [SerializeField] private Transform menuCubeRoot;
     [SerializeField] private Transform rotatingCube;
-    [SerializeField] private CubeMenuController cubeMenuController;
+    [SerializeField] private MonoBehaviour cubeMenuController;
     [SerializeField] private MonoBehaviour cubeMenuIdle;
 
     [Header("Level Select")]
@@ -30,14 +30,11 @@ public class LevelMenuTransition : MonoBehaviour
     [SerializeField] private float rowSpacingY = 2.2f;
     [SerializeField] private Vector3 gridCenter = new Vector3(0f, 0f, 0f);
 
-    [Header("Spawn Timing")]
-    [SerializeField] private float delayBeforeFirstLevelCube = 0.35f;
-    [SerializeField] private float spawnDelayBetweenCubes = 0.08f;
-    [SerializeField] private float topRowExtraDelay = 0.18f;
-
     [Header("Spawn Animation")]
     [SerializeField] private float spawnStartYOffset = 7f;
     [SerializeField] private float spawnDuration = 0.55f;
+    [SerializeField] private float spawnDelayBetweenCubes = 0.08f;
+    [SerializeField] private float topRowExtraDelay = 0.18f;
     [SerializeField] private float overshootDistance = 0.35f;
     [SerializeField] private AnimationCurve fallCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private AnimationCurve settleCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
@@ -46,11 +43,14 @@ public class LevelMenuTransition : MonoBehaviour
     [SerializeField] private bool addSpawnTilt = true;
     [SerializeField] private Vector3 spawnRotationOffset = new Vector3(12f, 18f, -8f);
 
+    [Header("Spawn Timing")]
+    [SerializeField] private float delayBeforeFirstLevelCube = 0.35f;
+
     private bool isTransitionRunning = false;
     private readonly List<GameObject> spawnedLevelCubes = new();
+    private readonly List<VoxelWordDisplay> spawnedLevelNumberDisplays = new();
 
     public bool IsTransitionRunning => isTransitionRunning;
-    public IReadOnlyList<GameObject> SpawnedLevelCubes => spawnedLevelCubes;
 
     public void StartPlayTransition()
     {
@@ -63,41 +63,38 @@ public class LevelMenuTransition : MonoBehaviour
     private IEnumerator PlayTransitionCoroutine()
     {
         isTransitionRunning = true;
+        spawnedLevelNumberDisplays.Clear();
 
         DisableMainMenuInteraction();
-        EnsureValidLevelParent();
 
         Coroutine exitRoutine = StartCoroutine(AnimateMainCubeExit());
         yield return StartCoroutine(SpawnLevelGridSequence());
+
         yield return exitRoutine;
 
-        if (cubeMenuController != null)
-            cubeMenuController.SetLevelSelectMode(true);
+        ShowAllLevelNumbers();
 
         isTransitionRunning = false;
     }
 
     private void DisableMainMenuInteraction()
     {
-        // OJO: no desactivamos cubeMenuController,
-        // porque lo necesitamos activo para detectar el clic en los cubos de nivel.
+        // IMPORTANTE:
+        // No desactivamos CubeMenuController porque sigue siendo quien detecta
+        // los clicks sobre los cubos de nivel en modo level select.
+        CubeMenuController controller = cubeMenuController as CubeMenuController;
+        if (controller != null)
+        {
+            controller.SetLevelSelectMode(true);
+            controller.SetInputLocked(false);
+        }
+
         if (cubeMenuIdle != null)
             cubeMenuIdle.enabled = false;
     }
 
-    private void EnsureValidLevelParent()
-    {
-        if (levelParent == null || !levelParent.gameObject.scene.IsValid())
-        {
-            levelParent = this.transform;
-        }
-    }
-
     private IEnumerator AnimateMainCubeExit()
     {
-        if (menuCubeRoot == null || rotatingCube == null)
-            yield break;
-
         Vector3 startPos = menuCubeRoot.position;
         Vector3 endPos = startPos + Vector3.down * exitDropDistance;
 
@@ -131,7 +128,8 @@ public class LevelMenuTransition : MonoBehaviour
             yield break;
         }
 
-        EnsureValidLevelParent();
+        if (levelParent == null)
+            levelParent = transform;
 
         if (delayBeforeFirstLevelCube > 0f)
             yield return new WaitForSeconds(delayBeforeFirstLevelCube);
@@ -140,12 +138,6 @@ public class LevelMenuTransition : MonoBehaviour
 
         foreach (SpawnData data in spawnPlan)
         {
-            if (data.isDelayOnly)
-            {
-                yield return new WaitForSeconds(data.delayFromPrevious);
-                continue;
-            }
-
             StartCoroutine(SpawnSingleLevelCube(data));
             yield return new WaitForSeconds(data.delayFromPrevious);
         }
@@ -155,43 +147,39 @@ public class LevelMenuTransition : MonoBehaviour
     {
         List<SpawnData> result = new();
 
-        int bottomRowStart = Mathf.Min(5, totalLevels);
-        int bottomRowEnd = Mathf.Min(10, totalLevels);
+        int clampedTotal = Mathf.Clamp(totalLevels, 1, 10);
 
-        // Fila inferior: 6 7 8 9 10
-        for (int i = bottomRowStart; i < bottomRowEnd; i++)
+        int bottomStart = Mathf.Min(5, clampedTotal);
+        int bottomEnd = clampedTotal;
+
+        // Fila inferior: índices 5..9 visualmente = números 5..9
+        for (int i = bottomStart; i < bottomEnd; i++)
         {
             result.Add(new SpawnData
             {
                 levelNumber = i + 1,
                 targetPosition = GetGridPosition(i),
-                delayFromPrevious = spawnDelayBetweenCubes,
-                isDelayOnly = false
+                delayFromPrevious = spawnDelayBetweenCubes
             });
         }
 
-        if (bottomRowStart < totalLevels && topRowExtraDelay > 0f)
+        // Pausa antes de la fila superior
+        result.Add(new SpawnData
         {
-            result.Add(new SpawnData
-            {
-                levelNumber = -1,
-                targetPosition = Vector3.zero,
-                delayFromPrevious = topRowExtraDelay,
-                isDelayOnly = true
-            });
-        }
+            levelNumber = -1,
+            delayFromPrevious = topRowExtraDelay,
+            isDelayOnly = true
+        });
 
-        int topRowEnd = Mathf.Min(5, totalLevels);
-
-        // Fila superior: 1 2 3 4 5
-        for (int i = 0; i < topRowEnd; i++)
+        // Fila superior: índices 0..4 visualmente = números 0..4
+        int topEnd = Mathf.Min(5, clampedTotal);
+        for (int i = 0; i < topEnd; i++)
         {
             result.Add(new SpawnData
             {
                 levelNumber = i + 1,
                 targetPosition = GetGridPosition(i),
-                delayFromPrevious = spawnDelayBetweenCubes,
-                isDelayOnly = false
+                delayFromPrevious = spawnDelayBetweenCubes
             });
         }
 
@@ -200,10 +188,10 @@ public class LevelMenuTransition : MonoBehaviour
 
     private Vector3 GetGridPosition(int index)
     {
-        int row = index / 5;
+        int row = index / 5;     // 0 = fila superior, 1 = fila inferior
         int column = index % 5;
 
-        float totalWidth = 4f * cellSpacingX;
+        float totalWidth = 4 * cellSpacingX;
         float startX = -totalWidth * 0.5f;
 
         float x = startX + (column * cellSpacingX);
@@ -214,6 +202,9 @@ public class LevelMenuTransition : MonoBehaviour
 
     private IEnumerator SpawnSingleLevelCube(SpawnData data)
     {
+        if (data.isDelayOnly)
+            yield break;
+
         Vector3 finalPos = data.targetPosition;
         Vector3 overshootPos = finalPos + Vector3.down * overshootDistance;
         Vector3 startPos = finalPos + Vector3.up * spawnStartYOffset;
@@ -221,6 +212,23 @@ public class LevelMenuTransition : MonoBehaviour
         GameObject cube = Instantiate(levelCubePrefab, startPos, Quaternion.identity, levelParent);
         cube.name = $"LevelCube_{data.levelNumber}";
         spawnedLevelCubes.Add(cube);
+
+        // Botón funcional del nivel
+        LevelCubeButton button = cube.GetComponent<LevelCubeButton>();
+        if (button != null && levelSelectTransition != null)
+        {
+            // Visualmente mostramos 0..9, así que también usamos índice lógico 0..9
+            button.Initialize(levelSelectTransition, data.levelNumber - 1);
+        }
+
+        // Número visual 0..9
+        VoxelWordDisplay numberDisplay = cube.GetComponentInChildren<VoxelWordDisplay>(true);
+        if (numberDisplay != null)
+        {
+            numberDisplay.SetWord((data.levelNumber - 1).ToString());
+            numberDisplay.ForceHiddenState();
+            spawnedLevelNumberDisplays.Add(numberDisplay);
+        }
 
         Quaternion finalRot = Quaternion.identity;
         Quaternion startRot = addSpawnTilt
@@ -230,24 +238,14 @@ public class LevelMenuTransition : MonoBehaviour
         cube.transform.position = startPos;
         cube.transform.rotation = startRot;
 
-        LevelCubeButton button = cube.GetComponent<LevelCubeButton>();
-        if (button != null)
-        {
-            button.Initialize(levelSelectTransition, data.levelNumber);
-        }
-        else
-        {
-            Debug.LogWarning($"LevelMenuTransition: {cube.name} no tiene LevelCubeButton.");
-        }
-
-        float fallDuration = spawnDuration * 0.7f;
+        float halfDuration = spawnDuration * 0.7f;
         float settleDuration = spawnDuration * 0.3f;
 
         float elapsed = 0f;
-        while (elapsed < fallDuration)
+        while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / fallDuration);
+            float t = Mathf.Clamp01(elapsed / halfDuration);
             float curveT = fallCurve.Evaluate(t);
 
             cube.transform.position = Vector3.Lerp(startPos, overshootPos, curveT);
@@ -275,6 +273,15 @@ public class LevelMenuTransition : MonoBehaviour
         FloatingIdleRandom idle = cube.GetComponent<FloatingIdleRandom>();
         if (idle != null)
             idle.InitializeRandomized();
+    }
+
+    private void ShowAllLevelNumbers()
+    {
+        for (int i = 0; i < spawnedLevelNumberDisplays.Count; i++)
+        {
+            if (spawnedLevelNumberDisplays[i] != null)
+                spawnedLevelNumberDisplays[i].ShowWord();
+        }
     }
 
     private struct SpawnData

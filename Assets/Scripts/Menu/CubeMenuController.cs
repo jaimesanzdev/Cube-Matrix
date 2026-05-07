@@ -4,6 +4,14 @@ using UnityEngine.InputSystem;
 
 public class CubeMenuController : MonoBehaviour
 {
+    public enum MainFace
+    {
+        Play,
+        Options,
+        Credits,
+        Quit
+    }
+
     [Header("Rotation Settings")]
     [SerializeField] private float rotationDuration = 0.35f;
     [SerializeField] private AnimationCurve rotationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
@@ -14,8 +22,13 @@ public class CubeMenuController : MonoBehaviour
     [Header("Tap Settings")]
     [SerializeField] private float maxTapDistance = 20f;
     [SerializeField] private Camera targetCamera;
+    [SerializeField] private float faceDotThreshold = 0.85f;
+
+    [Header("Face Markers")]
     [SerializeField] private Transform playFaceMarker;
-    [SerializeField] private float playFaceDotThreshold = 0.85f;
+    [SerializeField] private Transform optionsFaceMarker;
+    [SerializeField] private Transform creditsFaceMarker;
+    [SerializeField] private Transform quitFaceMarker;
 
     [Header("Transitions")]
     [SerializeField] private LevelMenuTransition levelMenuTransition;
@@ -25,9 +38,13 @@ public class CubeMenuController : MonoBehaviour
     [SerializeField] private CubeFaceWordManager cubeFaceWordManager;
     [SerializeField] private VoxelWordDisplay playWordDisplay;
 
+    [Header("Menu Flow")]
+    [SerializeField] private MenuFlowController menuFlowController;
+
     private bool isRotating = false;
     private bool isInLevelSelect = false;
     private bool isStartingPlay = false;
+    private bool inputLocked = false;
 
     private Quaternion targetRotation;
 
@@ -45,13 +62,58 @@ public class CubeMenuController : MonoBehaviour
 
     private void Update()
     {
+        if (inputLocked)
+            return;
+
         HandleKeyboardInput();
         HandlePointerInput();
     }
 
+    // Mantengo esto para no romper LevelMenuTransition actual
     public void SetLevelSelectMode(bool value)
     {
         isInLevelSelect = value;
+    }
+
+    public void SetInputLocked(bool value)
+    {
+        inputLocked = value;
+        ResetPointerState();
+    }
+
+    private void ResetPointerState()
+    {
+        pointerPressed = false;
+        pointerStartPos = Vector2.zero;
+        pointerEndPos = Vector2.zero;
+    }
+
+    public MainFace GetCurrentFrontFace()
+    {
+        float bestDot = -999f;
+        MainFace bestFace = MainFace.Play;
+
+        EvaluateFace(playFaceMarker, MainFace.Play, ref bestDot, ref bestFace);
+        EvaluateFace(optionsFaceMarker, MainFace.Options, ref bestDot, ref bestFace);
+        EvaluateFace(creditsFaceMarker, MainFace.Credits, ref bestDot, ref bestFace);
+        EvaluateFace(quitFaceMarker, MainFace.Quit, ref bestDot, ref bestFace);
+
+        return bestFace;
+    }
+
+    private void EvaluateFace(Transform marker, MainFace face, ref float bestDot, ref MainFace bestFace)
+    {
+        if (marker == null || targetCamera == null)
+            return;
+
+        Vector3 toCamera = (targetCamera.transform.position - marker.position).normalized;
+        float dot = Vector3.Dot(marker.forward, toCamera);
+
+        if (dot > bestDot)
+        {
+            bestDot = dot;
+            bestFace = face;
+        }
     }
 
     private void HandleKeyboardInput()
@@ -59,22 +121,17 @@ public class CubeMenuController : MonoBehaviour
         if (isRotating || isInLevelSelect || isStartingPlay || Keyboard.current == null)
             return;
 
-        // Arriba/abajo invertidos por tu preferencia
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        {
-            RotateCube(Vector3.right, -90f);
-        }
-        else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-        {
-            RotateCube(Vector3.right, 90f);
-        }
-        else if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
             RotateCube(Vector3.up, -90f);
         }
         else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
             RotateCube(Vector3.up, 90f);
+        }
+        else if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            TriggerCurrentFaceAction();
         }
     }
 
@@ -150,54 +207,69 @@ public class CubeMenuController : MonoBehaviour
             }
             else
             {
-                TryPressPlay(end);
+                TriggerCurrentFaceAction();
             }
         }
     }
 
     private void ProcessSwipe(Vector2 delta)
     {
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (Mathf.Abs(delta.x) <= Mathf.Abs(delta.y))
+            return;
+
+        if (delta.x > 0f)
         {
-            if (delta.x > 0f)
-            {
-                RotateCube(Vector3.up, 90f); // derecha
-            }
-            else
-            {
-                RotateCube(Vector3.up, -90f); // izquierda
-            }
+            RotateCube(Vector3.up, 90f);
         }
         else
         {
-            if (delta.y > 0f)
-            {
-                RotateCube(Vector3.right, -90f); // arriba
-            }
-            else
-            {
-                RotateCube(Vector3.right, 90f); // abajo
-            }
+            RotateCube(Vector3.up, -90f);
         }
     }
 
-    private void TryPressPlay(Vector2 screenPosition)
+    private void TriggerCurrentFaceAction()
     {
-        if (targetCamera == null || playFaceMarker == null || isStartingPlay)
+        if (isRotating || isStartingPlay)
             return;
 
-        Ray ray = targetCamera.ScreenPointToRay(screenPosition);
+        MainFace currentFace = GetCurrentFrontFace();
 
-        if (!Physics.Raycast(ray, out RaycastHit hit))
+        if (!IsFaceReallyFront(currentFace))
             return;
 
-        if (hit.transform != transform && !hit.transform.IsChildOf(transform))
-            return;
-
-        if (IsPlayFaceActive())
+        switch (currentFace)
         {
-            StartCoroutine(StartPlaySequence());
+            case MainFace.Play:
+                StartCoroutine(StartPlaySequence());
+                break;
+
+            case MainFace.Options:
+            case MainFace.Credits:
+            case MainFace.Quit:
+                if (menuFlowController != null)
+                    menuFlowController.OnMainFaceSelected(currentFace);
+                break;
         }
+    }
+
+    private bool IsFaceReallyFront(MainFace face)
+    {
+        Transform marker = face switch
+        {
+            MainFace.Play => playFaceMarker,
+            MainFace.Options => optionsFaceMarker,
+            MainFace.Credits => creditsFaceMarker,
+            MainFace.Quit => quitFaceMarker,
+            _ => null
+        };
+
+        if (marker == null || targetCamera == null)
+            return false;
+
+        Vector3 toCamera = (targetCamera.transform.position - marker.position).normalized;
+        float dot = Vector3.Dot(marker.forward, toCamera);
+
+        return dot >= faceDotThreshold;
     }
 
     private IEnumerator StartPlaySequence()
@@ -228,17 +300,6 @@ public class CubeMenuController : MonoBehaviour
         {
             button.OnPressed();
         }
-    }
-
-    private bool IsPlayFaceActive()
-    {
-        if (targetCamera == null || playFaceMarker == null)
-            return false;
-
-        Vector3 toCamera = (targetCamera.transform.position - playFaceMarker.position).normalized;
-        float dot = Vector3.Dot(playFaceMarker.forward, toCamera);
-
-        return dot >= playFaceDotThreshold;
     }
 
     private void RotateCube(Vector3 axis, float angle)

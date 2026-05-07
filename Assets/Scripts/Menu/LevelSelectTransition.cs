@@ -32,6 +32,9 @@ public class LevelSelectTransition : MonoBehaviour
     [SerializeField] private float delayBeforeFade = 0.35f;
     [SerializeField] private float fadeOutDuration = 0.45f;
 
+    [Header("Selected Cube Move To Center")]
+    [SerializeField] private Vector3 selectedCubeCenterTarget = new Vector3(0f, 0f, 8f);
+
     private bool isTransitionRunning = false;
 
     public bool IsTransitionRunning => isTransitionRunning;
@@ -81,7 +84,7 @@ public class LevelSelectTransition : MonoBehaviour
         Vector3 startPosition = selectedCube.position;
         Quaternion startRotation = selectedCube.rotation;
 
-        Vector3 targetPosition = GetCameraCenterWorldPosition(selectedCube.position);
+        Vector3 targetPosition = GetSelectedCubeCenterTargetWorldPosition();
         Quaternion targetRotation = Quaternion.identity;
 
         float elapsed = 0f;
@@ -172,18 +175,15 @@ public class LevelSelectTransition : MonoBehaviour
         }
     }
 
-    private Vector3 GetCameraCenterWorldPosition(Vector3 referenceWorldPosition)
+    private Vector3 GetSelectedCubeCenterTargetWorldPosition()
     {
         if (targetCamera == null)
-            return referenceWorldPosition;
-
-        Vector3 referenceScreenPoint = targetCamera.WorldToScreenPoint(referenceWorldPosition);
-        float depth = referenceScreenPoint.z;
+            return selectedCubeCenterTarget;
 
         Vector3 centerScreenPoint = new Vector3(
             Screen.width * 0.5f,
             Screen.height * 0.5f,
-            depth
+            selectedCubeCenterTarget.z
         );
 
         return targetCamera.ScreenToWorldPoint(centerScreenPoint);

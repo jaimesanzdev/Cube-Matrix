@@ -9,15 +9,20 @@ public class LevelCubeButton : MonoBehaviour
     {
         transition = transitionController;
         levelIndex = index;
+        Debug.Log($"Initialize LevelCubeButton -> index {levelIndex}, transition null? {transition == null}");
     }
 
     public void OnPressed()
     {
-        Debug.Log($"Level cube pressed: {levelIndex}");
+        Debug.Log($"Level cube pressed -> index {levelIndex}, transition null? {transition == null}");
 
         if (transition != null)
         {
             transition.SelectLevelCube(this, levelIndex);
+        }
+        else
+        {
+            Debug.LogWarning("LevelCubeButton: transition es null");
         }
     }
 }
