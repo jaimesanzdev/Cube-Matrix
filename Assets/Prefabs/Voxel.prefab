@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 3463404799548531817}
   - component: {fileID: 8633441108684841400}
   - component: {fileID: 8911258176575119209}
-  - component: {fileID: 8254918617065440438}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Voxel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,27 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8254918617065440438
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583548387269574206}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4568654500325596372
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +103,7 @@ GameObject:
   - component: {fileID: 8987477630922481462}
   - component: {fileID: 2696846806691436729}
   - component: {fileID: 7281518611075226592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
