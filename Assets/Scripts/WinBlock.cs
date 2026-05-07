@@ -9,7 +9,7 @@ public class WinBlock : MonoBehaviour
         CubeOrientation orientation = other.GetComponent<CubeOrientation>();
 
         if (state == null || orientation == null) return;
-
+        
         if (!state.isSnapped)
         {
             Debug.Log("Cube not snapped yet");
