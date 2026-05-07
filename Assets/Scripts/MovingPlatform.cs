@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public Vector3 moveOffset = new Vector3(0, 3, 0);
     public float speed = 2f;
     public float delay = 3f;
     private Vector3 startPosition;
-    private Vector3 endPosition;
+    public Vector3 endPosition;
     private bool isMoving = false;
 
     private void Start()
     {
         startPosition = transform.position;
-        endPosition = startPosition + moveOffset;
     }
     private void Update()
     {
