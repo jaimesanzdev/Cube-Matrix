@@ -6,7 +6,8 @@ public static class VoxelIconPatterns
     {
         BackArrow,
         CheckMark,
-        CrossMark
+        CrossMark,
+        HomeMark
     }
 
     public static bool[,] GetPattern(IconType iconType)
@@ -50,6 +51,18 @@ public static class VoxelIconPatterns
                     "0111001110",
                     "1110000111",
                     "1100000011"
+                );
+            
+            case IconType.HomeMark:
+                return PatternFromRows(
+                    "00000100000",
+                    "00001110000",
+                    "00011111000",
+                    "00111111100",
+                    "01111111110",
+                    "00110011100",
+                    "00110011100",
+                    "00110011100"
                 );
 
             default:
