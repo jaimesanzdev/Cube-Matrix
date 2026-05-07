@@ -122,7 +122,6 @@ public class DPadController : MonoBehaviour
 
     private void Awake()
     {
-
         rectTransform = GetComponent<RectTransform>();
 
         if (cubeRollMovement == null)
@@ -142,7 +141,6 @@ public class DPadController : MonoBehaviour
         WireUpButton(downButton, Vector3.back, 1);
         WireUpButton(leftButton, Vector3.left, 2);
         WireUpButton(rightButton, Vector3.right, 3);
-
 
         LoadSavedPosition();
     }
@@ -411,8 +409,74 @@ public class DPadController : MonoBehaviour
         if (!PlayerPrefs.HasKey(positionPrefsKey + "_X")) return;
         float x = PlayerPrefs.GetFloat(positionPrefsKey + "_X");
         float y = PlayerPrefs.GetFloat(positionPrefsKey + "_Y");
-        rectTransform.anchoredPosition = new Vector2(x, y);
+        Vector2 candidate = new Vector2(x, y);
+
+        // Sanity-check that the saved position would actually keep the D-pad
+        // on-screen for the current resolution/orientation. PlayerPrefs saves
+        // raw anchoredPosition pixels — if the user saved a position on a
+        // larger screen (e.g., editor) and then ran on a smaller one (e.g.,
+        // portrait phone), or rotated the device between sessions, the pad
+        // could land off-screen and become unreachable.
+        //
+        // Strategy: temporarily apply the candidate position, compute the
+        // pad's screen-space rect, and check if any portion of it intersects
+        // the screen. If not, revert to the design-time position (already in
+        // place since this method runs in Awake before any other position
+        // changes).
+        Vector2 originalPosition = rectTransform.anchoredPosition;
+        rectTransform.anchoredPosition = candidate;
+
+        if (!IsOnScreen(rectTransform))
+        {
+            // Saved position is off-screen for this resolution. Revert to the
+            // design-time position and clear the bad save so we don't keep
+            // hitting this every launch.
+            rectTransform.anchoredPosition = originalPosition;
+            PlayerPrefs.DeleteKey(positionPrefsKey + "_X");
+            PlayerPrefs.DeleteKey(positionPrefsKey + "_Y");
+            PlayerPrefs.Save();
+            Log($"Saved position ({x}, {y}) would be off-screen for current " +
+                $"resolution ({Screen.width}x{Screen.height}). Reverted to " +
+                $"design-time position and cleared the saved value.");
+            return;
+        }
+
         Log($"Loaded saved position: ({x}, {y}).");
+    }
+
+    /// <summary>
+    /// True if any portion of the given RectTransform overlaps the visible
+    /// screen area. Used to validate that a loaded position from PlayerPrefs
+    /// won't leave the D-pad inaccessible.
+    /// </summary>
+    private bool IsOnScreen(RectTransform rt)
+    {
+        // Get the four screen-space corners of the rect. Using a null camera
+        // because the D-pad lives on a Screen Space - Overlay canvas (no
+        // camera projection involved).
+        Vector3[] corners = new Vector3[4];
+        rt.GetWorldCorners(corners);
+
+        Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+
+        // If any corner is on-screen, the pad is at least partially reachable.
+        // Stricter check (require ALL corners on-screen) would reject cases
+        // where the pad is mostly visible but slightly clipped — too aggressive.
+        foreach (Vector3 corner in corners)
+        {
+            if (screenRect.Contains(corner)) return true;
+        }
+
+        // Also check if the screen center is inside the rect — handles the
+        // case where the pad is huge and surrounds the screen (corners
+        // outside but middle on-screen). Edge case, but cheap to cover.
+        if (RectTransformUtility.RectangleContainsScreenPoint(rt,
+            new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void ResetPosition()

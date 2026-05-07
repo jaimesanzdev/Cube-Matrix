@@ -66,6 +66,14 @@ TryRoll, and the swipe detector ignores touches that start over UI buttons.
 8. Drag the Player from Hierarchy into the **Cube Roll Movement** field.
 9. Press Play. Tap the buttons.
 
+### D-pad — using the prefab
+1. Drop `DPadController.cs` into `Assets/Scripts/Input/`.
+2. Pull in the updated `CubeRollMovement.cs`.
+3. Drag `Assets/Prefabs/Input/DPadCanvas.prefab` into your scene.
+4. Click the DPadPanel inside the prefab. Drag the Player from your scene
+   Hierarchy into the **Cube Roll Movement** field on DPadController.
+5. Press Play.
+
 ### Both
 Do all of the above. They coexist with no extra wiring.
 
@@ -99,9 +107,8 @@ Switch it back to Screen Space - Overlay.
 | `Assets/Scripts/Input/SwipeInputProvider.cs` | Quick-flick swipe detection on the Player. |
 | `Assets/Scripts/Input/DPadController.cs` | On-screen D-pad with optional hold-to-repeat and drag-to-reposition. |
 | `Assets/Scripts/CubeRollMovement.cs` | Modified — extracts a public TryRoll method so input sources route through one entry point. |
+| `Assets/Prefabs/Input/DPadCanvas.prefab` | Drop-in D-pad scaffold (Canvas + Panel + four buttons + DPadController). |
 
-The D-pad scaffold lives directly in the scene (not as a separate prefab
-in this PR). Future work could prefab it for drop-in reuse across scenes.
 
 ---
 
@@ -275,10 +282,11 @@ Canvas Render Mode is set to Screen Space - Camera or World Space.
 Change it to Screen Space - Overlay.
 
 ### D-pad appears off-screen at runtime
-A previous test session saved a drag position via PlayerPrefs that's
-now off-screen for your current resolution. Call `ResetPosition()` on
-the controller, or temporarily uncheck Allow Drag and edit the
-RectTransform position in the Inspector to a known-good value.
+This should auto-correct — LoadSavedPosition validates the loaded position
+against the screen bounds and reverts to design-time position if off-screen.
+If you still see this, verify the design-time position (set in the
+Inspector when the prefab was created) is itself reasonable. As a manual
+override, call `ResetPosition()` on the controller to clear PlayerPrefs.
 
 ### Swipe and D-pad both fire from a single tap
 The swipe detector should ignore touches over UI. Verify the EventSystem
@@ -301,11 +309,12 @@ when you add a Canvas).
 - **Camera-relative input is deferred** until a follow camera with
   rotation exists. Currently swipes and D-pad both produce world-space
   directions, which feels natural with a fixed top-down camera.
-- **D-pad position is screen-resolution-dependent.** The PlayerPrefs
-  approach saves anchored position in pixels. On a different aspect
-  ratio (tablet vs phone), the saved position may land off-screen. A
-  more robust approach would save position as a normalized (0–1)
-  fraction of screen size; flagged for a follow-up.
+- **D-pad position is screen-resolution-dependent.** PlayerPrefs saves
+  raw pixel coordinates. Saved positions that don't fit the current
+  resolution are now detected at load — the D-pad falls back to its
+  design-time position and the bad save is cleared. Long-term, saving
+  as a normalized (0–1) fraction of screen size would be cleaner;
+  flagged for a follow-up.
 - **Find-by-name is fragile.** Renaming a button silently breaks that
   direction. Inspector references would be more robust once the
   project's namespace conflicts are resolved.
