@@ -273,17 +273,17 @@ public class CubeMenuController : MonoBehaviour
     }
 
     private IEnumerator StartPlaySequence()
-    {
-        isStartingPlay = true;
+        {
+            isStartingPlay = true;
 
-        if (playWordDisplay != null)
-            yield return playWordDisplay.DisintegrateRoutine();
+            if (levelMenuTransition != null && !levelMenuTransition.IsTransitionRunning)
+            {
+                levelMenuTransition.StartPlayTransition();
+            }
 
-        if (levelMenuTransition != null && !levelMenuTransition.IsTransitionRunning)
-            levelMenuTransition.StartPlayTransition();
-
-        isStartingPlay = false;
-    }
+            yield return null;
+            isStartingPlay = false;
+        }
 
     private void TryPressLevelCube(Vector2 screenPosition)
     {

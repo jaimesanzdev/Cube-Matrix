@@ -7,7 +7,9 @@ public class LevelSelectTransition : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera targetCamera;
     [SerializeField] private Transform levelParent;
-    [SerializeField] private string sceneToLoad = "SampleScene";
+
+    [Header("Scene Loading")]
+    [SerializeField] private string sceneNamePrefix = "Level_";
 
     [Header("Move To Center")]
     [SerializeField] private float moveToCenterDuration = 0.35f;
@@ -69,10 +71,9 @@ public class LevelSelectTransition : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeFade);
 
         if (SceneFader.Instance != null)
-        {
             yield return SceneFader.Instance.FadeOutRoutine(fadeOutDuration);
-        }
 
+        string sceneToLoad = sceneNamePrefix + levelIndex;
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
         while (!loadOperation.isDone)
@@ -160,9 +161,7 @@ public class LevelSelectTransition : MonoBehaviour
         LevelCubeButton[] allButtons = levelParent.GetComponentsInChildren<LevelCubeButton>();
 
         foreach (LevelCubeButton button in allButtons)
-        {
             button.enabled = false;
-        }
     }
 
     private void DisableAllLevelCubeIdles()
@@ -170,9 +169,7 @@ public class LevelSelectTransition : MonoBehaviour
         FloatingIdleRandom[] allIdles = levelParent.GetComponentsInChildren<FloatingIdleRandom>();
 
         foreach (FloatingIdleRandom idle in allIdles)
-        {
             idle.enabled = false;
-        }
     }
 
     private Vector3 GetSelectedCubeCenterTargetWorldPosition()

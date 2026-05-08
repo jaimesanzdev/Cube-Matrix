@@ -9,6 +9,10 @@ public class LevelMenuTransition : MonoBehaviour
     [SerializeField] private Transform rotatingCube;
     [SerializeField] private MonoBehaviour cubeMenuController;
     [SerializeField] private MonoBehaviour cubeMenuIdle;
+    [SerializeField] private VoxelWordDisplay playWordDisplay;
+
+    [Header("Word System")]
+    [SerializeField] private MonoBehaviour cubeFaceWordManager;
 
     [Header("Level Select")]
     [SerializeField] private LevelSelectTransition levelSelectTransition;
@@ -19,6 +23,11 @@ public class LevelMenuTransition : MonoBehaviour
     [SerializeField] private float exitSpinSpeed = 900f;
     [SerializeField] private AnimationCurve exitYCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private AnimationCurve exitSpinCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0.6f);
+
+    [Header("Return To Main Animation")]
+    [SerializeField] private float returnDuration = 0.8f;
+    [SerializeField] private float levelCubesExitDistance = 8f;
+    [SerializeField] private AnimationCurve returnCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
     [Header("Level Cubes")]
     [SerializeField] private GameObject levelCubePrefab;
@@ -47,17 +56,36 @@ public class LevelMenuTransition : MonoBehaviour
     [SerializeField] private float delayBeforeFirstLevelCube = 0.35f;
 
     private bool isTransitionRunning = false;
+    private bool isReturningToMain = false;
+
     private readonly List<GameObject> spawnedLevelCubes = new();
     private readonly List<VoxelWordDisplay> spawnedLevelNumberDisplays = new();
 
+    private Vector3 initialMenuCubePosition;
+
     public bool IsTransitionRunning => isTransitionRunning;
+    public bool IsReturningToMain => isReturningToMain;
+
+    private void Awake()
+    {
+        if (menuCubeRoot != null)
+            initialMenuCubePosition = menuCubeRoot.position;
+    }
 
     public void StartPlayTransition()
     {
-        if (isTransitionRunning)
+        if (isTransitionRunning || isReturningToMain)
             return;
 
         StartCoroutine(PlayTransitionCoroutine());
+    }
+
+    public void StartReturnToMainMenu()
+    {
+        if (isTransitionRunning || isReturningToMain)
+            return;
+
+        StartCoroutine(ReturnToMainMenuCoroutine());
     }
 
     private IEnumerator PlayTransitionCoroutine()
@@ -77,11 +105,31 @@ public class LevelMenuTransition : MonoBehaviour
         isTransitionRunning = false;
     }
 
+    private IEnumerator ReturnToMainMenuCoroutine()
+    {
+        isReturningToMain = true;
+
+        HideAllLevelNumbers();
+        DisableAllLevelCubeInteraction();
+        DisableAllLevelCubeIdles();
+
+        yield return StartCoroutine(AnimateLevelCubesExit());
+        yield return StartCoroutine(AnimateMainCubeReturn());
+
+        DestroySpawnedLevelCubes();
+        EnableMainMenuInteraction();
+
+        if (playWordDisplay != null)
+        {
+            playWordDisplay.ForceHiddenState();
+            playWordDisplay.ShowWord();
+        }
+
+        isReturningToMain = false;
+    }
+
     private void DisableMainMenuInteraction()
     {
-        // IMPORTANTE:
-        // No desactivamos CubeMenuController porque sigue siendo quien detecta
-        // los clicks sobre los cubos de nivel en modo level select.
         CubeMenuController controller = cubeMenuController as CubeMenuController;
         if (controller != null)
         {
@@ -91,6 +139,22 @@ public class LevelMenuTransition : MonoBehaviour
 
         if (cubeMenuIdle != null)
             cubeMenuIdle.enabled = false;
+    }
+
+    private void EnableMainMenuInteraction()
+    {
+        CubeMenuController controller = cubeMenuController as CubeMenuController;
+        if (controller != null)
+        {
+            controller.SetLevelSelectMode(false);
+            controller.SetInputLocked(false);
+        }
+
+        if (cubeMenuIdle != null)
+            cubeMenuIdle.enabled = true;
+
+        if (cubeFaceWordManager != null)
+            cubeFaceWordManager.enabled = true;
     }
 
     private IEnumerator AnimateMainCubeExit()
@@ -118,6 +182,71 @@ public class LevelMenuTransition : MonoBehaviour
         }
 
         menuCubeRoot.position = endPos;
+    }
+
+    private IEnumerator AnimateMainCubeReturn()
+    {
+        Vector3 startPos = menuCubeRoot.position;
+        Vector3 endPos = initialMenuCubePosition;
+
+        float elapsed = 0f;
+
+        while (elapsed < returnDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / returnDuration);
+            float curved = returnCurve.Evaluate(t);
+
+            menuCubeRoot.position = Vector3.Lerp(startPos, endPos, curved);
+            yield return null;
+        }
+
+        menuCubeRoot.position = endPos;
+    }
+
+    private IEnumerator AnimateLevelCubesExit()
+    {
+        List<Transform> cubeTransforms = new();
+        List<Vector3> startPositions = new();
+        List<Vector3> endPositions = new();
+
+        for (int i = 0; i < spawnedLevelCubes.Count; i++)
+        {
+            if (spawnedLevelCubes[i] == null)
+                continue;
+
+            Transform t = spawnedLevelCubes[i].transform;
+            cubeTransforms.Add(t);
+            startPositions.Add(t.position);
+            endPositions.Add(t.position + Vector3.up * levelCubesExitDistance);
+        }
+
+        float elapsed = 0f;
+
+        while (elapsed < returnDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / returnDuration);
+            float curved = returnCurve.Evaluate(t);
+
+            for (int i = 0; i < cubeTransforms.Count; i++)
+            {
+                if (cubeTransforms[i] == null)
+                    continue;
+
+                cubeTransforms[i].position = Vector3.Lerp(startPositions[i], endPositions[i], curved);
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < cubeTransforms.Count; i++)
+        {
+            if (cubeTransforms[i] == null)
+                continue;
+
+            cubeTransforms[i].position = endPositions[i];
+        }
     }
 
     private IEnumerator SpawnLevelGridSequence()
@@ -152,7 +281,6 @@ public class LevelMenuTransition : MonoBehaviour
         int bottomStart = Mathf.Min(5, clampedTotal);
         int bottomEnd = clampedTotal;
 
-        // Fila inferior: índices 5..9 visualmente = números 5..9
         for (int i = bottomStart; i < bottomEnd; i++)
         {
             result.Add(new SpawnData
@@ -163,7 +291,6 @@ public class LevelMenuTransition : MonoBehaviour
             });
         }
 
-        // Pausa antes de la fila superior
         result.Add(new SpawnData
         {
             levelNumber = -1,
@@ -171,7 +298,6 @@ public class LevelMenuTransition : MonoBehaviour
             isDelayOnly = true
         });
 
-        // Fila superior: índices 0..4 visualmente = números 0..4
         int topEnd = Mathf.Min(5, clampedTotal);
         for (int i = 0; i < topEnd; i++)
         {
@@ -188,7 +314,7 @@ public class LevelMenuTransition : MonoBehaviour
 
     private Vector3 GetGridPosition(int index)
     {
-        int row = index / 5;     // 0 = fila superior, 1 = fila inferior
+        int row = index / 5;
         int column = index % 5;
 
         float totalWidth = 4 * cellSpacingX;
@@ -213,15 +339,10 @@ public class LevelMenuTransition : MonoBehaviour
         cube.name = $"LevelCube_{data.levelNumber}";
         spawnedLevelCubes.Add(cube);
 
-        // Botón funcional del nivel
         LevelCubeButton button = cube.GetComponent<LevelCubeButton>();
         if (button != null && levelSelectTransition != null)
-        {
-            // Visualmente mostramos 0..9, así que también usamos índice lógico 0..9
             button.Initialize(levelSelectTransition, data.levelNumber - 1);
-        }
 
-        // Número visual 0..9
         VoxelWordDisplay numberDisplay = cube.GetComponentInChildren<VoxelWordDisplay>(true);
         if (numberDisplay != null)
         {
@@ -231,9 +352,7 @@ public class LevelMenuTransition : MonoBehaviour
         }
 
         Quaternion finalRot = Quaternion.identity;
-        Quaternion startRot = addSpawnTilt
-            ? Quaternion.Euler(spawnRotationOffset)
-            : finalRot;
+        Quaternion startRot = addSpawnTilt ? Quaternion.Euler(spawnRotationOffset) : finalRot;
 
         cube.transform.position = startPos;
         cube.transform.rotation = startRot;
@@ -282,6 +401,53 @@ public class LevelMenuTransition : MonoBehaviour
             if (spawnedLevelNumberDisplays[i] != null)
                 spawnedLevelNumberDisplays[i].ShowWord();
         }
+    }
+
+    private void HideAllLevelNumbers()
+    {
+        for (int i = 0; i < spawnedLevelNumberDisplays.Count; i++)
+        {
+            if (spawnedLevelNumberDisplays[i] != null)
+                spawnedLevelNumberDisplays[i].ForceHiddenState();
+        }
+    }
+
+    private void DisableAllLevelCubeInteraction()
+    {
+        for (int i = 0; i < spawnedLevelCubes.Count; i++)
+        {
+            if (spawnedLevelCubes[i] == null)
+                continue;
+
+            LevelCubeButton button = spawnedLevelCubes[i].GetComponent<LevelCubeButton>();
+            if (button != null)
+                button.enabled = false;
+        }
+    }
+
+    private void DisableAllLevelCubeIdles()
+    {
+        for (int i = 0; i < spawnedLevelCubes.Count; i++)
+        {
+            if (spawnedLevelCubes[i] == null)
+                continue;
+
+            FloatingIdleRandom idle = spawnedLevelCubes[i].GetComponent<FloatingIdleRandom>();
+            if (idle != null)
+                idle.enabled = false;
+        }
+    }
+
+    private void DestroySpawnedLevelCubes()
+    {
+        for (int i = 0; i < spawnedLevelCubes.Count; i++)
+        {
+            if (spawnedLevelCubes[i] != null)
+                Destroy(spawnedLevelCubes[i]);
+        }
+
+        spawnedLevelCubes.Clear();
+        spawnedLevelNumberDisplays.Clear();
     }
 
     private struct SpawnData
