@@ -1628,6 +1628,7 @@ GameObject:
   - component: {fileID: 1264843258}
   - component: {fileID: 1264843257}
   - component: {fileID: 1264843260}
+  - component: {fileID: 1264843261}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1753,6 +1754,30 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1264843261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264843256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ed322229cd822488e71a796447e4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
+  inputEnabled: 1
+  player: {fileID: 1826810031}
+  defaultDistance: 12
+  minDistance: 5
+  maxDistance: 30
+  zoomSpeed: 0.02
+  panSpeed: 0.02
+  maxPanDistance: 20
+  autoFollow: 0
+  autoFollowSpeed: 5
+  enableMouseControls: 1
+  verboseLogging: 0
 --- !u!1001 &1301135649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2976,6 +3001,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc80792596e74ac88c32d4db37fe1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeRollMovement
+--- !u!4 &1826810031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5343346949033959375, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+  m_PrefabInstance: {fileID: 1826810020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1850917404 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8668637097527044038, guid: b7d7b22d449cd40f8ae02e4a7c422b21, type: 3}

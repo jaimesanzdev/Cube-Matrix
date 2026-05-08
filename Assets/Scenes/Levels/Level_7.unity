@@ -4462,6 +4462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Win Block
       objectReference: {fileID: 0}
+    - target: {fileID: 6669624240778730144, guid: e1316a725bfc94a389ee1f6075b7cb38, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
