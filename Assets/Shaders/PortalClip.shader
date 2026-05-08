@@ -42,16 +42,17 @@ Shader "Custom/PortalClip"
             {
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.worldPos = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.worldPos = TransformObjectToWorld(IN.positionOS.xyz); // needed for clip check
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
+                // hide pixels below the tile surface when clipping is on
                 if (_Clipping > 0.5 && IN.worldPos.y < _ClipY)
                     discard;
 
-                // basic lambert lighting
+                // basic lighting
                 Light mainLight = GetMainLight();
                 float3 normal = normalize(cross(ddy(IN.worldPos), ddx(IN.worldPos)));
                 float lighting = saturate(dot(normal, mainLight.direction)) * 0.8 + 0.2;

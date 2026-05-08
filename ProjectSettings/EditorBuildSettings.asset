@@ -18,9 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/MikahLevel3.unity
     guid: f7ef1e57cac1d40b58cc444b0c7cf9cb
   - enabled: 1
+    path: Assets/Scenes/Levels/SimmonLevel1.unity
+    guid: 960fdddcb79fd8b4e9a374e768a6748d
+  - enabled: 1
+    path: Assets/Scenes/Levels/SimmonLevel2.unity
+    guid: 92fe29a28a905364bacba354b97bab6a
+  - enabled: 1
+    path: Assets/Scenes/Levels/SimmonLevel3.unity
+    guid: f8a8f886119528c4688742b7a32be546
+  - enabled: 0
     path: Assets/Scenes/Levels/TestLevel.unity
     guid: 20bde20beefd5471aaa2f2ea2a2f9d1a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
