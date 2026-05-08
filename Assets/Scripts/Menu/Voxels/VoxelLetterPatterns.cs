@@ -19,6 +19,18 @@ public static class VoxelLetterPatterns
                     "11000011",
                     "11000011"
                 );
+            
+            case 'B':
+                return PatternFromRows(
+                    "11111100",
+                    "11000110",
+                    "11000110",
+                    "11111100",
+                    "11000110",
+                    "11000110",
+                    "11000110",
+                    "11111100"
+                );
 
             case 'C':
                 return PatternFromRows(
@@ -78,6 +90,19 @@ public static class VoxelLetterPatterns
                     "11000000",
                     "11111110",
                     "11111110"
+                );
+
+
+            case 'M':
+                return PatternFromRows(
+                    "11000011",
+                    "11100111",
+                    "11111111",
+                    "11011011",
+                    "11000011",
+                    "11000011",
+                    "11000011",
+                    "11000011"
                 );
 
             case 'N':
@@ -174,6 +199,18 @@ public static class VoxelLetterPatterns
                     "11000011",
                     "01100110",
                     "00111100"
+                );
+
+            case 'X':
+                return PatternFromRows(
+                    "11000011",
+                    "01100110",
+                    "00111100",
+                    "00011000",
+                    "00011000",
+                    "00111100",
+                    "01100110",
+                    "11000011"
                 );
 
             case 'Y':

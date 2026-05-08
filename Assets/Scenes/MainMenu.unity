@@ -119,6 +119,100 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1032362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032363}
+  - component: {fileID: 1032364}
+  m_Layer: 0
+  m_Name: Letter_U
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: U
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 1, g: 0.6039216, b: 0.3019608, a: 1}
+  frontFaceColor: {r: 1, g: 0.6039216, b: 0.3019608, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &5251046
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +524,7 @@ MonoBehaviour:
   voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
   cellPitch: 0.11
   centerOnLocalOrigin: 1
-  voxelScaleMultiplier: 0.9
+  voxelScaleMultiplier: 1
   bodyColor: {r: 0, g: 0, b: 0, a: 1}
   frontFaceColor: {r: 0, g: 0, b: 0, a: 1}
   disableShadows: 1
@@ -455,6 +549,100 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &123448531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123448532}
+  - component: {fileID: 123448533}
+  m_Layer: 0
+  m_Name: Letter_X
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123448532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123448531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &123448533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123448531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: X
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.8666667, g: 0.9647059, b: 1, a: 1}
+  frontFaceColor: {r: 0.8666667, g: 0.9647059, b: 1, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &182610516
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +691,99 @@ MonoBehaviour:
   floatAmplitude: 0.3
   floatSpeed: 1.5
   useUnscaledTime: 0
+--- !u!1 &193032474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 193032475}
+  - component: {fileID: 193032476}
+  m_Layer: 0
+  m_Name: TitleIntroController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &193032475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193032474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &193032476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193032474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cfef7fd64fae470e825269abd29d0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TitleIntroController
+  titleLetters:
+  - {fileID: 1265796276}
+  - {fileID: 1032364}
+  - {fileID: 910318826}
+  - {fileID: 1647081352}
+  - {fileID: 1189194477}
+  - {fileID: 867219821}
+  - {fileID: 1767357864}
+  - {fileID: 1254999199}
+  - {fileID: 569022937}
+  - {fileID: 123448533}
+  initialDelay: 0.2
+  letterShowStagger: 0.045
+  letterHideStagger: 0.02
+  waitAfterTitleAppears: 0.15
+  menuCubeObject: {fileID: 2033830885}
+  menuCubeRoot: {fileID: 182610517}
+  menuCubeStartYOffset: 8
+  menuCubeDropDuration: 0.65
+  menuCubeDropCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  cubeMenuController: {fileID: 358434280}
+  cubeMenuIdle: {fileID: 182610518}
+  cubeFaceWordManager: {fileID: 358434280}
+  allowSpace: 1
+  allowMouseClick: 1
+  allowTouch: 1
 --- !u!1 &226516195
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +832,7 @@ MonoBehaviour:
   voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
   cellPitch: 0.11
   centerOnLocalOrigin: 1
-  voxelScaleMultiplier: 0.9
+  voxelScaleMultiplier: 1
   bodyColor: {r: 1, g: 1, b: 1, a: 1}
   frontFaceColor: {r: 1, g: 1, b: 1, a: 1}
   disableShadows: 1
@@ -587,7 +868,6 @@ GameObject:
   - component: {fileID: 255048479}
   - component: {fileID: 255048483}
   - component: {fileID: 255048482}
-  - component: {fileID: 255048481}
   - component: {fileID: 255048480}
   m_Layer: 0
   m_Name: Quad (5)
@@ -634,28 +914,6 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
---- !u!64 &255048481
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255048478}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &255048482
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1033,7 +1291,7 @@ MonoBehaviour:
     marker: {fileID: 643126042}
     wordDisplay: {fileID: 1417514662}
     localRestRotation: {x: 0, y: 0, z: 0, w: 0}
-  initialFrontFaceDelay: 2
+  initialFrontFaceDelay: 0
   showDelayOnFaceSwitch: 0
   hideDelayOnFaceLeave: 0
 --- !u!114 &358434282
@@ -1454,6 +1712,100 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565959945}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &569022935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569022936}
+  - component: {fileID: 569022937}
+  m_Layer: 0
+  m_Name: Letter_I
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &569022936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569022935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &569022937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569022935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: I
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 1, g: 0.4392157, b: 0.88235295, a: 1}
+  frontFaceColor: {r: 1, g: 0.4392157, b: 0.88235295, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &606867395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1987,7 @@ MonoBehaviour:
   frontFaceColor: {r: 0.1462264, g: 1, b: 0.917512, a: 1}
   disableShadows: 1
   useSharedMaterialColor: 0
-  spawnDuration: 0.55
+  spawnDuration: 0.35
   spawnStagger: 0.008
   spawnRadiusMin: 0.9
   spawnRadiusMax: 1.6
@@ -2137,7 +2489,7 @@ MonoBehaviour:
   frontFaceColor: {r: 0.1462264, g: 1, b: 0.917512, a: 1}
   disableShadows: 1
   useSharedMaterialColor: 0
-  spawnDuration: 0.55
+  spawnDuration: 0.35
   spawnStagger: 0.008
   spawnRadiusMin: 0.9
   spawnRadiusMax: 1.6
@@ -2429,7 +2781,6 @@ GameObject:
   - component: {fileID: 799960371}
   - component: {fileID: 799960375}
   - component: {fileID: 799960374}
-  - component: {fileID: 799960373}
   - component: {fileID: 799960372}
   m_Layer: 0
   m_Name: Quad (4)
@@ -2476,28 +2827,6 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
---- !u!64 &799960373
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799960370}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &799960374
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2609,7 +2938,7 @@ MonoBehaviour:
   frontFaceColor: {r: 0.1462264, g: 1, b: 0.917512, a: 1}
   disableShadows: 1
   useSharedMaterialColor: 0
-  spawnDuration: 0.55
+  spawnDuration: 0.35
   spawnStagger: 0.008
   spawnRadiusMin: 0.9
   spawnRadiusMax: 1.6
@@ -2660,7 +2989,6 @@ GameObject:
   - component: {fileID: 840024311}
   - component: {fileID: 840024315}
   - component: {fileID: 840024314}
-  - component: {fileID: 840024313}
   - component: {fileID: 840024312}
   m_Layer: 0
   m_Name: Quad (2)
@@ -2707,28 +3035,6 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
---- !u!64 &840024313
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840024310}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &840024314
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2786,6 +3092,194 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840024310}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &867219819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867219820}
+  - component: {fileID: 867219821}
+  m_Layer: 0
+  m_Name: Letter_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &867219820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867219819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &867219821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867219819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: A
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.35686275, g: 0.72156864, b: 1, a: 1}
+  frontFaceColor: {r: 0.35686275, g: 0.72156864, b: 1, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
+--- !u!1 &910318824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910318825}
+  - component: {fileID: 910318826}
+  m_Layer: 0
+  m_Name: Letter_B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910318825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910318824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910318826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910318824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: B
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 1, g: 0.84705883, b: 0.3019608, a: 1}
+  frontFaceColor: {r: 1, g: 0.84705883, b: 0.3019608, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &949711825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +3404,6 @@ GameObject:
   - component: {fileID: 1138590514}
   - component: {fileID: 1138590517}
   - component: {fileID: 1138590516}
-  - component: {fileID: 1138590515}
   - component: {fileID: 1138590518}
   m_Layer: 0
   m_Name: Quad
@@ -2934,28 +3427,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 358434276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1138590515
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138590513}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1138590516
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3036,6 +3507,100 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
+--- !u!1 &1189194475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189194476}
+  - component: {fileID: 1189194477}
+  m_Layer: 0
+  m_Name: Letter_M
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189194476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189194475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189194477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189194475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: M
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.3019608, g: 1, b: 0.85, a: 1}
+  frontFaceColor: {r: 0.3019608, g: 1, b: 0.8509804, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &1213056597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,7 +3649,7 @@ MonoBehaviour:
   voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
   cellPitch: 0.11
   centerOnLocalOrigin: 1
-  voxelScaleMultiplier: 0.9
+  voxelScaleMultiplier: 1
   bodyColor: {r: 1, g: 1, b: 1, a: 1}
   frontFaceColor: {r: 1, g: 1, b: 1, a: 1}
   disableShadows: 1
@@ -3109,6 +3674,194 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1254999197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1254999198}
+  - component: {fileID: 1254999199}
+  m_Layer: 0
+  m_Name: Letter_R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1254999198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254999197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254999199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254999197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: R
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.7058824, g: 0.42352942, b: 1, a: 1}
+  frontFaceColor: {r: 0.7058824, g: 0.42352942, b: 1, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
+--- !u!1 &1265796274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265796275}
+  - component: {fileID: 1265796276}
+  m_Layer: 0
+  m_Name: Letter_C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1265796275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265796274}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265796276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265796274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: C
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 1, g: 0.43529412, b: 0.68235296, a: 1}
+  frontFaceColor: {r: 1, g: 0.43529412, b: 0.68235296, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &1352275281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,6 +3911,8 @@ MonoBehaviour:
   rotatingCube: {fileID: 358434276}
   cubeMenuController: {fileID: 358434280}
   cubeMenuIdle: {fileID: 182610518}
+  playWordDisplay: {fileID: 0}
+  cubeFaceWordManager: {fileID: 0}
   levelSelectTransition: {fileID: 1352275284}
   exitDuration: 1
   exitDropDistance: 15
@@ -3201,6 +3956,32 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0.6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  returnDuration: 0.8
+  levelCubesExitDistance: 8
+  returnCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3286,7 +4067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectTransition
   targetCamera: {fileID: 5251048}
   levelParent: {fileID: 650225789}
-  sceneToLoad: SampleScene
+  sceneNamePrefix: Level_
   moveToCenterDuration: 0.35
   moveCurve:
     serializedVersion: 2
@@ -3395,7 +4176,7 @@ MonoBehaviour:
   voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
   cellPitch: 0.11
   centerOnLocalOrigin: 1
-  voxelScaleMultiplier: 0.9
+  voxelScaleMultiplier: 1
   bodyColor: {r: 0, g: 0, b: 0, a: 1}
   frontFaceColor: {r: 0, g: 0, b: 0, a: 1}
   disableShadows: 1
@@ -3474,7 +4255,7 @@ MonoBehaviour:
   frontFaceColor: {r: 0.1462264, g: 1, b: 0.917512, a: 1}
   disableShadows: 1
   useSharedMaterialColor: 0
-  spawnDuration: 0.55
+  spawnDuration: 0.35
   spawnStagger: 0.008
   spawnRadiusMin: 0.9
   spawnRadiusMax: 1.6
@@ -3637,7 +4418,6 @@ GameObject:
   - component: {fileID: 1489954140}
   - component: {fileID: 1489954144}
   - component: {fileID: 1489954143}
-  - component: {fileID: 1489954142}
   - component: {fileID: 1489954141}
   m_Layer: 0
   m_Name: Quad (3)
@@ -3684,28 +4464,6 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
---- !u!64 &1489954142
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489954139}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1489954143
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3891,6 +4649,66 @@ MonoBehaviour:
   targetCamera: {fileID: 5251048}
   menuFlowController: {fileID: 358434282}
   choice: 0
+--- !u!1 &1522871900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522871901}
+  - component: {fileID: 1522871902}
+  m_Layer: 0
+  m_Name: TitleIntroRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1522871901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522871900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1265796275}
+  - {fileID: 1032363}
+  - {fileID: 910318825}
+  - {fileID: 1647081351}
+  - {fileID: 1189194476}
+  - {fileID: 867219820}
+  - {fileID: 1767357863}
+  - {fileID: 1254999198}
+  - {fileID: 569022936}
+  - {fileID: 123448532}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1522871902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522871900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec4ac35125bf43a3852150755031b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelTitleLayout
+  layoutMode: 1
+  letterSpacing: 1.15
+  wordSpacing: 1.8
+  lineSpacing: 1.6
+  firstLineLetterCount: 4
+  localZ: 0
 --- !u!1 &1564361131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4857,6 @@ GameObject:
   - component: {fileID: 1640612064}
   - component: {fileID: 1640612068}
   - component: {fileID: 1640612067}
-  - component: {fileID: 1640612066}
   - component: {fileID: 1640612065}
   m_Layer: 0
   m_Name: Quad (1)
@@ -4086,28 +4903,6 @@ MonoBehaviour:
   fadeInFraction: 0.15
   fadeOutFraction: 0.2
   randomizeDirection: 1
---- !u!64 &1640612066
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640612063}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1640612067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4165,6 +4960,191 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640612063}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1647081350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647081351}
+  - component: {fileID: 1647081352}
+  m_Layer: 0
+  m_Name: Letter_E
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647081351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647081350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1647081352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647081350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: E
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.6156863, g: 1, b: 0.3882353, a: 1}
+  frontFaceColor: {r: 0.6156863, g: 1, b: 0.3882353, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
+--- !u!1 &1656745583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656745584}
+  - component: {fileID: 1656745585}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1656745584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656745583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1656745585
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656745583}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: d243114bc8bd240918cae3af88aca3c2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12.13, y: 9.73}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &1752169417
 GameObject:
   m_ObjectHideFlags: 0
@@ -4294,6 +5274,100 @@ Transform:
   - {fileID: 1564361132}
   m_Father: {fileID: 2033830886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767357862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1767357863}
+  - component: {fileID: 1767357864}
+  m_Layer: 0
+  m_Name: Letter_T
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1767357863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767357862}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522871901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767357864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767357862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bdb3652b7114a5f9ddfd81bdd26039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoxelWordDisplay
+  word: T
+  voxelPrefab: {fileID: 583548387269574206, guid: cc21df4e9c26345d088a2efc4f5e5467, type: 3}
+  cellPitch: 0.115
+  letterSpacing: 0.06
+  centerOnLocalOrigin: 1
+  voxelScaleMultiplier: 0.9
+  bodyColor: {r: 0.48235294, g: 0.48235294, b: 1, a: 1}
+  frontFaceColor: {r: 0.48235294, g: 0.48235294, b: 1, a: 1}
+  disableShadows: 1
+  useSharedMaterialColor: 0
+  spawnDuration: 0.55
+  spawnStagger: 0.008
+  spawnRadiusMin: 0.9
+  spawnRadiusMax: 1.6
+  swirlStrength: 0.3
+  verticalBias: 0.12
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableIdle: 1
+  idleAmplitude: 0.01
+  idleSpeed: 1.15
+  hideDuration: 0.22
+  hideStagger: 0.003
+  hideDistanceMin: 0.35
+  hideDistanceMax: 0.9
+  hideSwirl: 0.18
+  hideFall: 0.08
+  hideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  disintegrateDuration: 0.5
+  disintegrateStagger: 0.006
+  disintegrateDistanceMin: 1.8
+  disintegrateDistanceMax: 3.4
+  disintegrateSwirl: 0.45
+  disintegrateFall: 0.2
+  disintegrateCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  destroyOnDisintegrate: 1
 --- !u!1 &1773500578
 GameObject:
   m_ObjectHideFlags: 0
@@ -4958,3 +6032,6 @@ SceneRoots:
   - {fileID: 2033830886}
   - {fileID: 710773451}
   - {fileID: 1773500581}
+  - {fileID: 1522871901}
+  - {fileID: 193032475}
+  - {fileID: 1656745584}
