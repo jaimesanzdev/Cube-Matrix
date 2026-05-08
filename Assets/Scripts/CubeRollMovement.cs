@@ -16,27 +16,35 @@ public class CubeRollMovement : MonoBehaviour
 
     [Header("Portal")]
     [SerializeField] private float portalSinkSpeed = 3f;
-    
-    public bool isMoving = false;
-    private CubeOrientation orientation;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip rollClip;
+    [SerializeField] private float rollVolume = 1f;
+    [SerializeField] private Vector2 rollPitchRange = new Vector2(0.94f, 1.06f);
+
+    public bool isMoving = false;
+
+    private CubeOrientation orientation;
     private RollFeedback rollFeedback;
 
-    void Start()
+    private void Start()
     {
         orientation = GetComponent<CubeOrientation>();
         rollFeedback = GetComponent<RollFeedback>();
 
-
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         // snap to grid on start so all rolls begin from a clean position
         SnapToGrid();
         SnapRotation();
     }
-    
-    void Update()
+
+    private void Update()
     {
-        if (Keyboard.current == null) return;
+        if (Keyboard.current == null)
+            return;
 
         // Read keyboard input and delegate to TryRoll. The gate checks
         // (isMoving, IsPlayingBump) live inside TryRoll so external input
@@ -52,10 +60,9 @@ public class CubeRollMovement : MonoBehaviour
         else if (Keyboard.current.rightArrowKey.isPressed)
             direction = Vector3.right;
 
-        if (direction != Vector3.zero) TryRoll(direction);
-
+        if (direction != Vector3.zero)
+            TryRoll(direction);
     }
-
 
     /// <summary>
     /// Public entry point for triggering a roll attempt from any input source
@@ -93,14 +100,15 @@ public class CubeRollMovement : MonoBehaviour
                     if (cube.IsMoving || !cube.CanMove(direction))
                     {
                         if (rollFeedback != null)
-                        {
                             rollFeedback.OnInvalidRollAttempted(direction);
-                        }
+
                         return;
                     }
+
                     cube.Push(direction);
                 }
             }
+
             StartCoroutine(Roll(direction));
         }
         else if (rollFeedback != null)
@@ -109,8 +117,16 @@ public class CubeRollMovement : MonoBehaviour
         }
     }
 
+    private void PlayRollSound()
+    {
+        if (audioSource == null || rollClip == null)
+            return;
 
-
+        float originalPitch = audioSource.pitch;
+        audioSource.pitch = Random.Range(rollPitchRange.x, rollPitchRange.y);
+        audioSource.PlayOneShot(rollClip, rollVolume);
+        audioSource.pitch = originalPitch;
+    }
 
     private bool CanMove(Vector3 direction)
     {
@@ -157,10 +173,12 @@ public class CubeRollMovement : MonoBehaviour
         SnapToGrid();
         SnapRotation();
 
+        PlayRollSound();
+
         isMoving = false;
-        
+
         orientation.UpdateOrientation(rotationAxis, 90f);
-        
+
         Vector3 checkPos = transform.position + Vector3.down * (cellSize / 2f);
         Collider[] hits = Physics.OverlapSphere(checkPos, 0.4f, tileLayer);
         foreach (Collider hit in hits)
@@ -215,6 +233,7 @@ public class CubeRollMovement : MonoBehaviour
             Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * raycastDistance);
         }
     }
+
     private IEnumerator PortalTransition(PortalTile portal)
     {
         isMoving = true;

@@ -188,18 +188,46 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 453012784}
+    - target: {fileID: 377664234258220044, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_VersionIndex
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368689872084919346, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1156862121}
+    - target: {fileID: 3416826564189854640, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 285824606}
     - target: {fileID: 3567911653300548389, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 285824606}
+    - target: {fileID: 3567911653300548389, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_VersionIndex
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3990016945594528777, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 453012784}
     - target: {fileID: 4107292592665338271, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1376188890}
+    - target: {fileID: 4107292592665338271, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_VersionIndex
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 4178266078988220325, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1156862121}
+    - target: {fileID: 4178266078988220325, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_VersionIndex
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 4450035921178713941, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -244,10 +272,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5497954934137726535, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1427029416}
     - target: {fileID: 7725763012424548153, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1427029416}
+    - target: {fileID: 7725763012424548153, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_VersionIndex
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671363884333305885, guid: 154ca623cd2494993a31be0f0c21d0e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1376188890}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
