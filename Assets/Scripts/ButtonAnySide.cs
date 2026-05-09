@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ButtonAnySide : MonoBehaviour
 {
+    //Same as pressureButton script but allows all sides to activate button
+    
     public MovingPlatform platform;
     public bool pressurePlate = true;
 
