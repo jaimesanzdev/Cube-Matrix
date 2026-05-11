@@ -1,5 +1,7 @@
 # Group Name: Hollow Face Studios
 
+video of gameplay: https://drive.google.com/file/d/1sR-R2emUoR_cA4EGnhmzTsjFkpmV9pL0/view?usp=sharing 
+
 # Game Description:
 
 The gameplay loop of Cube-Matrix will be inspired by Bloxorz, with modifications and improvements to make the gameplay more complex and better align with project expectations. The game will be a mobile game where the player controls the cube by swiping and tapping the touchscreen, allowing for movement in the four cardinal directions by rotating and flipping the cube. The main goal is to traverse the map to reach the specified end tile. The twist is that the cube has one hollowed face that determines how it can interact with the world — only the hollow face can activate portals, enter the goal tile, and fire projectiles, while only solid faces can press buttons. This forces the player to be intentional with every move and plan, or restart the level.
