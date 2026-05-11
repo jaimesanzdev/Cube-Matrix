@@ -1,6 +1,6 @@
 # Group Name: Hollow Face Studios
 
-video of gameplay: https://drive.google.com/file/d/1sR-R2emUoR_cA4EGnhmzTsjFkpmV9pL0/view?usp=sharing 
+video of gameplay: https://drive.google.com/file/d/18tN9fJC3_teGR2DxYheNaBqArWdnBWEP/view?usp=sharing 
 
 # Game Description:
 
