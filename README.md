@@ -1,6 +1,7 @@
 # Group Name: Hollow Face Studios
 
 GAMEPLAY VIDEO: https://drive.google.com/file/d/13q4OalwmD80ZANQC7vkW0S1EwIMt4T_N/view?usp=sharing
+MOBILE INPUT DEMONSTRATION VIDEO: https://www.youtube.com/watch?v=2DShQ9Y7Hu4
 
 # Game Description:
 
